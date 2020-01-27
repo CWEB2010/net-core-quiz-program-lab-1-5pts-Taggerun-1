@@ -14,13 +14,16 @@ namespace lab_one
         {
 
             string[] answerKey = { "B", "B", "C", "A", "D", "A", "A", "C", "D", "A" };
-            string[] userChoice = new string[4];
+            string[] userChoice = new string[0];
             string userSelection;
-            string[] questions = { "When was the latest version of .NET Core released?", "What makes .NET Core different from .NET Framework?",
-            ""};
+            string[] questions = { "1) When was the latest version of .NET Core released?", "2) What makes .NET Core different from .NET Framework?",
+            "3) What languages does .NET Core support?", "4) Who develops and supports .NET Core?"};
             string[ , ] optionChoices = { 
                                 {"A) December 31st, 2019", "B) December 3rd, 2019", "C) January 14th, 2020", "D) October 23rd, 2019"}, 
-                                {"A) ","", "", ""} 
+                                {"A) It is more functional than .NET Core.","B) .NET Core is a cross platform framework, .NET Framework is not.",
+                                "C) It is newer than .NET Framework.", "D) .NET Framework does not recieve support anymore."},
+                                {"A) C++, Java, and HTML", "B) C++, F#, and BASIC", "C) C#, F#, and Visual Basic", "D) C#, F++, and Visual Basic"},
+
                                 };
 
             int x;
