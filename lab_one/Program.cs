@@ -14,7 +14,7 @@ namespace lab_one
         {
 
             string[] answerKey = {"B", "B", "C", "A", "D", "A", "A", "C", "D", "A"};
-            string[] userChoice = new string[0];
+            string[] userChoice = new string[10];
             string userSelection;
             string[] questions = {"1) When was the latest version of .NET Core released?", "2) What makes .NET Core different from .NET Framework?",
                 "3) What languages does .NET Core support?", "4) Who develops and supports .NET Core?", "5) What is the next major version of .NET Core coming in 2020?",
@@ -36,8 +36,8 @@ namespace lab_one
                 {"A) Mac OS, Windows, and Linux", "B) Mac OS X, Windows 10, and DOS", "C) iOS, Android, BlackBerry OS", "D) Windows 10 only" }
             };
 
-            int primingValue;
-            int EXIT = 2;
+            ConsoleKey primingValue;
+            ConsoleKey EXIT = ConsoleKey.D2;
             int x;
             int y;
             int totalCorrect = 0;
@@ -46,13 +46,13 @@ namespace lab_one
             Console.WriteLine("Welcome to this quiz on .NET Core." + "\n" +
                 "This quiz contains 10 questions." + "\n" +
                 "You must obtain a 7 out of 10 to pass this quiz.");
-            Console.WriteLine("To start the quiz please enter 1.");
-            primingValue = Convert.ToInt32(Console.ReadKey());
+            Console.WriteLine("To start the quiz please press any key.");
+            primingValue = Console.ReadKey().Key;
             Console.Clear();
 
             while (primingValue != EXIT)
-            { 
-                for (x = 0; x < questions.Length; x++)
+            {
+                for (x = 0; x < questions.GetLength(0); x++)
                 {
                     Console.WriteLine(questions[x]);
 
@@ -61,19 +61,21 @@ namespace lab_one
                         Console.WriteLine(optionChoices[x, y]);
                     }
 
-                    Console.WriteLine("Please enter your selection");
-                    userSelection = Convert.ToString(Console.ReadKey());
+                    Console.WriteLine("Please enter your selection:");
+                    userSelection = Console.ReadKey().Key.ToString();
 
-                    if (userSelection == answerKey[x])
+                    if (userSelection == answerKey[x] | userSelection == answerKey[x].ToLower())
                     {
                         totalCorrect++;
-                        Console.WriteLine("You got it right!");
+                        Console.WriteLine("\nYou got it right!");
+                        Console.Clear();
                     }
                     
-                    else
+                    if (userSelection != answerKey[x] && userSelection != answerKey[x].ToLower())
                     {
                         totalIncorrect++;
-                        Console.WriteLine("You got it wrong.");
+                        Console.WriteLine("\nYou got it wrong.");
+                        Console.Clear();
                     }
 
                     userChoice[x] = userSelection;
@@ -91,10 +93,11 @@ namespace lab_one
                 {
                     Console.WriteLine("Sorry you failed the quiz, please retake the quiz to pass.");
                 }
-                Console.WriteLine("To retake the quiz, please enter 1 or enter 2 to exit the quiz.");
+                Console.WriteLine("To retake the quiz, please press any key or enter 2 to exit the quiz.");
                 
-                primingValue = Convert.ToInt32(Console.ReadKey());
+                primingValue = Console.ReadKey().Key;
             }
+            Console.Clear();
             Console.WriteLine("Thank you for taking my .NET Core quiz.");
             Console.WriteLine("Have a nice day!");
         }
