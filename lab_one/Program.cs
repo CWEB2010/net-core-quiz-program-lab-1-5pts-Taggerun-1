@@ -36,18 +36,22 @@ namespace lab_one
                 {"A) Mac OS, Windows, and Linux", "B) Mac OS X, Windows 10, and DOS", "C) iOS, Android, BlackBerry OS", "D) Windows 10 only" }
             };
 
-            ConsoleKey primingValue;
-            ConsoleKey EXIT = ConsoleKey.D2;
+            string primingValue;
+            string EXIT = "NumPad2";
+            string EXIT2 = "D2";
             int x;
             int y;
+            int score = 0;
             int totalCorrect = 0;
             int totalIncorrect = 0;
+            int finalScore = 0;
 
             Console.WriteLine("Welcome to this quiz on .NET Core." + "\n" +
                 "This quiz contains 10 questions." + "\n" +
                 "You must obtain a 7 out of 10 to pass this quiz.");
             Console.WriteLine("To start the quiz please press any key.");
-            primingValue = Console.ReadKey().Key;
+            primingValue = Console.ReadKey().Key.ToString();
+            Console.WriteLine(primingValue);
             Console.Clear();
 
             while (primingValue != EXIT)
@@ -61,13 +65,18 @@ namespace lab_one
                         Console.WriteLine(optionChoices[x, y]);
                     }
 
-                    Console.WriteLine("Please enter your selection:");
+                    Console.WriteLine("\nPlease enter your selection:");
+                    Console.WriteLine("\nPress the enter key after you answer each question to continue.");
+
                     userSelection = Console.ReadKey().Key.ToString();
 
                     if (userSelection == answerKey[x] | userSelection == answerKey[x].ToLower())
                     {
                         totalCorrect++;
+                        score++;
                         Console.WriteLine("\nYou got it right!");
+                        Console.WriteLine("\nYour current score is " + score + " out of 10.");
+                        Console.ReadKey();
                         Console.Clear();
                     }
                     
@@ -75,31 +84,45 @@ namespace lab_one
                     {
                         totalIncorrect++;
                         Console.WriteLine("\nYou got it wrong.");
+                        Console.WriteLine("\nYour current score is " + score + " out of 10.");
+                        Console.ReadKey();
                         Console.Clear();
                     }
 
                     userChoice[x] = userSelection;
                 }
                 Console.Clear();
-                Console.WriteLine("This quiz has concluded, you results are listed below.");
+                finalScore = 10 - totalIncorrect;
+                Console.WriteLine("This quiz has concluded, your results are listed below.");
                 Console.WriteLine("Total Correct: " + totalCorrect);
                 Console.WriteLine("Total Incorrect: " + totalIncorrect);
+                Console.WriteLine("Your final score is " + finalScore + " out of 10\n");
+                
                 if (totalCorrect >= 7)
                 {
-                    Console.WriteLine("You passed this quiz!");
+                    Console.WriteLine("You passed this quiz!\n");
                 }
 
                 else
                 {
-                    Console.WriteLine("Sorry you failed the quiz, please retake the quiz to pass.");
+                    Console.WriteLine("Sorry you failed the quiz, please retake the quiz to pass.\n");
                 }
                 Console.WriteLine("To retake the quiz, please press any key or enter 2 to exit the quiz.");
-                
-                primingValue = Console.ReadKey().Key;
+
+                primingValue = Console.ReadKey().Key.ToString();
+                Console.WriteLine(primingValue);
+                Console.Clear();
+
+                if (primingValue == EXIT | primingValue == EXIT2)
+                {
+                    break;
+                }
             }
             Console.Clear();
             Console.WriteLine("Thank you for taking my .NET Core quiz.");
             Console.WriteLine("Have a nice day!");
+            Console.WriteLine("Press any key to close...");
+            Console.ReadKey();
         }
     }
 }
