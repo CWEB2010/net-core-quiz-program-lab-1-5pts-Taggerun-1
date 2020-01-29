@@ -78,7 +78,25 @@ namespace lab_one
 
                     userChoice[x] = userSelection;
                 }
+                Console.Clear();
+                Console.WriteLine("This quiz has concluded, you results are listed below.");
+                Console.WriteLine("Total Correct: " + totalCorrect);
+                Console.WriteLine("Total Incorrect: " + totalIncorrect);
+                if (totalCorrect >= 7)
+                {
+                    Console.WriteLine("You passed this quiz!");
+                }
+
+                else
+                {
+                    Console.WriteLine("Sorry you failed the quiz, please retake the quiz to pass.");
+                }
+                Console.WriteLine("To retake the quiz, please enter 1 or enter 2 to exit the quiz.");
+                
+                primingValue = Convert.ToInt32(Console.ReadKey());
             }
+            Console.WriteLine("Thank you for taking my .NET Core quiz.");
+            Console.WriteLine("Have a nice day!");
         }
     }
 }
